@@ -1,6 +1,3 @@
-## Put comments here that give an overall description of what your
-## functions do
-
 ## makeCacheMatrix works by caching an inputted matrix in the setMatrix 
 ## function as x and then creating a list that contains functions to: assign a 
 ## new matrix while nullifing any cached inverse (i),
