@@ -6,15 +6,28 @@
 
 makeCacheMatrix <- function(x = matrix()) {
   i <- NULL
+  
   setmatrix <- function(y){
     x <<- y
     i <<- NULL
   }
-  getmatrix <- function() x
-  setInverse <- function(solved) i <<- solved
-  getInverse <- function() i
-  list(setmatrix = setmatrix, getmatrix = getmatrix,
-       setInverse = setInverse, getInverse = getInverse)
+  
+  getmatrix <- function() {
+    x
+  }
+  
+  setInverse <- function(solved) {
+    i <<- solved
+  }
+  
+  getInverse <- function() {
+    i
+  }
+  
+  list(
+    setmatrix = setmatrix, getmatrix = getmatrix,
+    setInverse = setInverse, getInverse = getInverse
+    )
 }
 
 ## cacheSolve will take the list created in the above command and
@@ -23,14 +36,20 @@ makeCacheMatrix <- function(x = matrix()) {
 ## it will simply return i, the cached inverse of the cached matrix
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+## Return a matrix that is the inverse of 'x'
+  
   i <- x$getInverse()
+  
   if(!is.null(i)){
     message("getting cached inverse")
     return(i)
   }
+  
   data <- x$getmatrix()
+  
   i <- solve(data,...)
+  
   x$setInverse(i)
+  
   i
 }
